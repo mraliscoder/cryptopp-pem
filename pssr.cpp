@@ -7,6 +7,8 @@
 #include "whrlpool.h"
 #include "misc.h"
 
+#include <fstream>
+
 #include <functional>
 
 NAMESPACE_BEGIN(CryptoPP)

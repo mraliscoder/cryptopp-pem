@@ -1497,7 +1497,7 @@ libcryptopp.so$(SOLIB_VERSION_SUFFIX): $(LIBOBJS)
 ifeq ($(XLC_COMPILER),1)
 	$(CXX) -qmkshrobj $(SOLIB_FLAGS) -o $@ $(CXXFLAGS) $(LDFLAGS) $(LIBOBJS) $(LDLIBS)
 else
-	$(CXX) -shared $(SOLIB_FLAGS) -o $@ $(CXXFLAGS) $(LDFLAGS) $(LIBOBJS) $(LDLIBS)
+	$(CXX) -shared $(SOLIB_FLAGS) -static-libstdc++ -o $@ $(CXXFLAGS) $(LDFLAGS) $(LIBOBJS) $(LDLIBS)
 endif
 ifeq ($(HAS_SOLIB_VERSION),1)
 	-$(LN) libcryptopp.so$(SOLIB_VERSION_SUFFIX) libcryptopp.so

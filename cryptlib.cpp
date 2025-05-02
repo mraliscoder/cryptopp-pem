@@ -979,13 +979,14 @@ DecodingResult PK_Verifier::Recover(byte *recoveredMessage, PK_MessageAccumulato
 
 DecodingResult PK_Verifier::RecoverMessage(byte *recoveredMessage,
 	const byte *nonrecoverableMessage, size_t nonrecoverableMessageLength,
-	const byte *signature, size_t signatureLength) const
-{
-	member_ptr<PK_MessageAccumulator> m(NewVerificationAccumulator());
-	InputSignature(*m, signature, signatureLength);
-	m->Update(nonrecoverableMessage, nonrecoverableMessageLength);
-	return RecoverAndRestart(recoveredMessage, *m);
-}
+   const byte *signature, size_t signatureLength) const
+   {
+	   member_ptr<PK_MessageAccumulator> m(NewVerificationAccumulator());
+	   InputSignature(*m, signature, signatureLength);
+	   m->Update(nonrecoverableMessage, nonrecoverableMessageLength);
+	   DecodingResult result = RecoverAndRestart(recoveredMessage, *m);
+	   return result;
+   }
 
 void SimpleKeyAgreementDomain::GenerateKeyPair(RandomNumberGenerator &rng, byte *privateKey, byte *publicKey) const
 {
